@@ -1,4 +1,4 @@
-// Generated on 2016-02-11 using generator-angular 0.15.1
+// Generated on 2015-11-12 using generator-angular 0.14.0
 'use strict';
 
 // # Globbing
@@ -44,13 +44,9 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         }
       },
-      jsTest: {
-        files: ['test/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'newer:jscs:test', 'karma']
-      },
-      styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'postcss']
+      sass: {
+        files: ['<%= yeoman.app %>/sass/{,*/}*.{scss,sass}'],
+        tasks: ['sass:server', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -61,7 +57,7 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',
+          '<%= yeoman.app %>/css/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -204,23 +200,38 @@ module.exports = function (grunt) {
         src: ['<%= yeoman.app %>/index.html'],
         ignorePath:  /\.\.\//
       },
-      test: {
-        devDependencies: true,
-        src: '<%= karma.unit.configFile %>',
-        ignorePath:  /\.\.\//,
-        fileTypes:{
-          js: {
-            block: /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
-              detect: {
-                js: /'(.*\.js)'/gi
-              },
-              replace: {
-                js: '\'{{filePath}}\','
-              }
-            }
-          }
+      sass: {
+        src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        ignorePath: /(\.\.\/){1,2}bower_components\//
       }
     }, 
+
+    // Compiles Sass to CSS and generates necessary files if requested
+    sass: {
+        options: {
+            includePaths: [
+                'bower_components'
+            ]
+        },
+        dist: {
+            files: [{
+                expand: true,
+                cwd: '<%= yeoman.app %>/sass',
+                src: ['*.scss'],
+                dest: '<%= yeoman.app %>/css',
+                ext: '.css'
+            }]
+        },
+        server: {
+            files: [{
+                expand: true,
+                cwd: '<%= yeoman.app %>/sass',
+                src: ['*.scss'],
+                dest: '<%= yeoman.app %>/css',
+                ext: '.css'
+            }]
+        }
+    },
 
     // Renames files for browser caching purposes
     filerev: {
@@ -338,7 +349,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       dist: {
         options: {
-          module: 'generatorAngularApp',
+          module: 'electronPlaygroundApp',
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
@@ -387,11 +398,6 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
-        }, {
-          expand: true,
-          cwd: 'bower_components/bootstrap/dist',
-          src: 'fonts/*',
-          dest: '<%= yeoman.dist %>'
         }]
       },
       styles: {
@@ -405,24 +411,18 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
+        'sass:server',
         'copy:styles'
       ],
       test: [
         'copy:styles'
       ],
       dist: [
+        'sass',
         'copy:styles',
         'imagemin',
         'svgmin'
       ]
-    },
-
-    // Test settings
-    karma: {
-      unit: {
-        configFile: 'test/karma.conf.js',
-        singleRun: true
-      }
     }
   });
 
@@ -452,8 +452,7 @@ module.exports = function (grunt) {
     'wiredep',
     'concurrent:test',
     'postcss',
-    'connect:test',
-    'karma'
+    'connect:test'
   ]);
 
   grunt.registerTask('build', [
