@@ -1,23 +1,50 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+<div class="jumbotron" style="background-color: #eee; width: 100%">
+  <div class="container">
+    <h1>Photofy</h1>
+    <p class="lead">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius facilis, recusandae fugit voluptatibus ex. In velit culpa dicta nostrum ad nihil beatae, praesentium, totam perspiciatis atque dolorum sapiente labore tempore!
+    </p>
+    <p><md-button class="md-raised md-accent" ng-href="#/">Register!<span class="glyphicon glyphicon-ok"></span></md-button></p>
+  </div>
 </div>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
+<md-content class="md-padding" layout="row" layout-align="center">
+    <md-card  flex="30">
+      <img src="http://lorempixel.com/image_output/nature-q-c-823-548-4.jpg" class="md-card-image" alt="Washed Out">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Natural images</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <p>
+          The titles of Washed Out's breakthrough song and the first single from Paracosm share the
+          two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+        </p>
 
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-fab md-mini"><ng-md-icon icon='favorite'></ng-md-icon></md-button>
+        <md-button class="md-fab md-mini"><ng-md-icon icon='more_vert'></ng-md-icon></md-button>
+      </md-card-actions>
+    </md-card>
+    <md-card  flex="30">
+      <img src="http://lorempixel.com/image_output/nature-q-c-823-548-7.jpg" class="md-card-image" alt="Washed Out">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Flower images</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <p>
+          The titles of Washed Out's breakthrough song and the first single from Paracosm share the
+          two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+        </p>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end">
+        <md-button class="md-fab md-mini"><ng-md-icon icon='favorite'></ng-md-icon></md-button>
+        <md-button class="md-fab md-mini"><ng-md-icon icon='more_vert'></ng-md-icon></md-button>
+      </md-card-actions>
+    </md-card>
+</md-content>
