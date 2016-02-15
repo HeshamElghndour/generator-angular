@@ -49,4 +49,45 @@ body {
   }
 }
 
+.images-package{
+  .card{
+    margin: 8px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+    margin-left: 8px;
+    padding: 4px;
+    }
+  img{
+    margin-left: 3px;
+  }
+}
+
+// filters
+.filter-grayscale{
+  -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+  filter: grayscale(100%);
+}
+.filter-sepia{
+  -webkit-filter: sepia(70%);
+   filter:  sepia(70%);
+}
+.filter-blur{
+  -webkit-filter: blur(3px);
+  filter: blur(2px);
+}
+
+.border-thick{
+  border: 20px solid #333;
+  padding: 56px;
+}
+.border-thin{
+  border: 5px solid #333;
+  padding: 56px;
+}
+.border-light{
+  border-color: #F1E5AC;
+}
+.border-dark{
+  border-color: #333;
+}
+
 @import "header";
