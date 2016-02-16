@@ -34,4 +34,17 @@ angular.module('generatorAngularApp')
         $scope.customFullscreen = (wantsFullScreen === true);
       });
     };
+
+
+    $scope.select= function(item) {
+      $scope.selected = item; 
+    };
+    $scope.isActive = function(item) {
+      return $scope.selected === item;
+    };
+
+    $scope.data = {
+      group1 : 'Dark'
+    };
+
   })

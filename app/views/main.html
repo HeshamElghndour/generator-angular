@@ -11,71 +11,75 @@
 
 <md-content class="md-padding" >
     <md-card>
-      <div layout="row" layout-align="center">
-        <a href="" flex="40" ng-click="package=true">
+      <div layout="row" layout-align="center" class="image-categories">
+        <a href="" flex="30" ng-click="package=true" ng-class="{selectedCat:package}">
           <img src="images/nature.jpg" class="md-card-image" alt="Washed Out">
         </a>
-        <a href="" flex="40">
+        <a href="" flex="30" ng-class="{unselectedCat:package}">
           <img src="images/flowers.jpg" class="md-card-image" alt="Washed Out">
         </a>
       </div>
-      <md-card-title>
-
-      </md-card-title>
+      <br>
       <md-card-content class="images-package">
         <div layout="row" ng-show="package"   layout-align="center start">
-          <div class="card" flex="auto"><img src="images/nature-s.jpg" alt=""></div>
-          <div class="card" ng-click="similarPackages=true" flex="auto"><img src="images/nature-s.jpg" alt=""><img src="images/nature-s.jpg" alt=""></div>
-          <div class="card" flex="auto"><img src="images/nature-s.jpg" alt=""><img src="images/nature-s.jpg" alt=""><img src="images/nature-s.jpg" alt=""></div>
-        </div>
-
-        <div layout="row" ng-show="similarPackages" >
-          <h3>Similar groups:</h3>
-          <div flex="auto" ng-click="imageSize=true"><img src="images/nature-s.jpg" alt=""><img src="images/nature-s.jpg" alt=""></div>
-          <div flex="auto"><img src="images/nature-s.jpg" alt=""><img src="images/nature-s.jpg" alt=""></div>
-          <div flex="auto"><img src="images/nature-s.jpg" alt=""><img src="images/nature-s.jpg" alt=""></div>
+          <div class="card" flex="none"><p>Group: A</p><img src="images/nature-s.jpg" alt=""></div>
+          <div class="card" ng-class="{selectedCat:similarPackages}" ng-click="similarPackages=true" flex="none"><p>Group: B</p><img src="images/nature-s.jpg" alt=""><img src="images/nature-s.jpg" alt=""></div>
+          <div class="card" flex="none"><p>Group: C</p><img src="images/nature-s.jpg" alt=""><img src="images/nature-s.jpg" alt=""><img src="images/nature-s.jpg" alt=""></div>
         </div>
         
-        <div layout="row" ng-show="imageSize" >
-          <p>Choose size: </p>
-          <md-radio-group ng-model="data.group1">
-            <md-radio-button value="Small" class="md-primary" ng-click="imageFilter=true">Small</md-radio-button>
-            <md-radio-button value="Medium" ng-click="imageFilter=true"> Medium </md-radio-button>
-            <md-radio-button value="Large" ng-click="imageFilter=true">Large</md-radio-button>
-          </md-radio-group>
+        <br>
+        <div ng-show="similarPackages">
+          <h4 class="text-center">Similar groups:</h4>
+          <div layout="row"  class="similarPackages" layout-align="center start">
+            <div flex="none"><img src="images/nature-s1.jpg" alt=""><img src="images/nature-s2.jpg" alt=""></div>
+            <div flex="none" ng-class="{selectedCat:imageSize}" ng-click="imageSize=true"><img src="images/nature-s3.jpg" alt=""><img src="images/nature-s4.jpg" alt=""></div>
+            <div flex="none"><img src="images/nature-s3.jpg" alt=""><img src="images/nature-s4.jpg" alt=""></div>
+            <div flex="none"><img src="images/nature-s1.jpg" alt=""><img src="images/nature-s2.jpg" alt=""></div>
+          </div>
         </div>
 
-        <div layout="row" ng-show="imageFilter" class="images-package" layout-align="start start">
-          <div class="card">
-            <h3>Image filter:</h3><br>
+        <br>
+        <div  ng-show="imageSize" class="text-center">
+          <h4>Choose size: </h4>
+          <md-radio-group layout="row" layout-align="center start" ng-model="data.group1">
+            <md-radio-button flex="none" value="Small" class="md-primary" ng-click="imageFilter=true">Small</md-radio-button>
+            <md-radio-button flex="none" value="Medium" ng-click="imageFilter=true"> Medium </md-radio-button>
+            <md-radio-button flex="none" value="Large" ng-click="imageFilter=true">Large</md-radio-button>
+          </md-radio-group>
+        </div>
+        
+        <br>
+        <div ng-show="imageFilter"> 
+          <h4 class="text-center">Image filter:</h4><br>
+          <div layout="row"  class="images-package" layout-align="center start">
             <img ng-click="imageFrame=true" class="filter-sepia" src="images/nature-s.jpg" alt="">
             <img ng-click="imageFrame=true" class="filter-blur" src="images/nature-s.jpg" alt="">
             <img ng-click="imageFrame=true" class="filter-grayscale" src="images/nature-s.jpg" alt="">
           </div>
         </div>
+        <br>
 
-        <div class="card" layout="row" ng-show="imageFrame" layout-align="start start">
-          <h3>Choose frame thickness:</h3><br>
-          <md-radio-group ng-model="data.group1">
-            <div ng-click="activeBorder='border-thick' ; imageFrameColor=true" flex="10" class="border-thin" ng-class="activeColor"></div>
-            <div ng-click="activeBorder='border-thin' ; imageFrameColor=true" flex="10" class="border-thick" ng-class="activeColor"></div> 
+        <div ng-show="imageFrame">
+            <h4 class="text-center">Choose frame thickness:</h4>
+            <md-radio-group layout="row" layout-align="center center">
+              <div ng-click="activeBorder='border-thick' ; imageFrameColor=true" flex="none" class="border-thin" ng-class="activeColor"></div>
+              <div ng-click="activeBorder='border-thin' ; imageFrameColor=true" flex="none" class="border-thick" ng-class="activeColor"></div> 
+            </md-radio-group>
+        </div>
+        
+        <br>
+        <div  ng-show="imageFrameColor" >
+          <h4 class="text-center">Choose color:</h4>
+          <md-radio-group ng-model="data.group1" layout="row" layout-align="center start">
+            <md-radio-button value="Dark" flex="none"  selected ng-click="activeColor='border-dark'; submit=true">Dark</md-radio-button>
+            <md-radio-button value="Light" flex="none" ng-click="activeColor='border-light'; submit=true">Light</md-radio-button>
           </md-radio-group>
         </div>
-        <div class="card" layout="row" ng-show="imageFrameColor" layout-align="start start">
-          <p>Choose color:</p>
-          <md-radio-group ng-model="data.group1">
-            <md-radio-button value="Dark"  selected ng-click="activeColor='border-dark'; submit=true"> Dark </md-radio-button>
-            <md-radio-button value="Light" ng-click="activeColor='border-light'; submit=true">Light</md-radio-button>
-          </md-radio-group>
-        </div>
-        <div layout="row" ng-show="submit">
-          <md-button  md-no-ink class="md-primary"><a href="mailto:email@example.com">Submit</a></md-button>         
+        <br>
+        <div layout="row" ng-show="submit" layout-align="center center">
+          <md-button   class="md-no-ink md-primary"><a href="mailto:email@example.com">Submit</a></md-button>         
         </div>
         
       </md-card-content>
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button class="md-fab md-mini"><ng-md-icon icon='favorite'></ng-md-icon></md-button>
-        <md-button class="md-fab md-mini"><ng-md-icon icon='more_vert'></ng-md-icon></md-button>
-      </md-card-actions>
     </md-card>
 </md-content>
